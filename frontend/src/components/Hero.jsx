@@ -116,20 +116,7 @@ const Hero = ({ scrollY }) => {
           </button>
         </div>
 
-        {/* Floating stats */}
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 animate-fadeInUp" style={{ animationDelay: '0.5s' }}>
-          {[
-            { value: '150+', label: 'AI Models' },
-            { value: '2B+', label: 'Data Points' },
-            { value: '96.5%', label: 'Accuracy' },
-            { value: '94%', label: 'Satisfaction' }
-          ].map((stat, i) => (
-            <div key={i} className="backdrop-blur-lg bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105">
-              <div className="text-3xl font-black text-white mb-1">{stat.value}</div>
-              <div className="text-sm text-gray-400 uppercase tracking-wider">{stat.label}</div>
-            </div>
-          ))}
-        </div>
+ 
       </div>
 
       <button
