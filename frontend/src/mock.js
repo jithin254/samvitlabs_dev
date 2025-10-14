@@ -81,10 +81,10 @@ export const mockData = {
     }
   ],
   stats: [
-    { label: "AI Models Deployed", value: 500, suffix: "+" },
-    { label: "Data Points Processed", value: 10, suffix: "B+" },
-    { label: "Accuracy Rate", value: 99.5, suffix: "%" },
-    { label: "Client Satisfaction", value: 98, suffix: "%" }
+    { label: "AI Models Deployed", value: 150, suffix: "+" },
+    { label: "Data Points Processed", value: 2, suffix: "B+" },
+    { label: "Accuracy Rate", value: 96.5, suffix: "%" },
+    { label: "Client Satisfaction", value: 94, suffix: "%" }
   ],
   caseStudies: [
     {
