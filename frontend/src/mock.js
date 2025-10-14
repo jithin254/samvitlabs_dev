@@ -2,7 +2,7 @@ export const mockData = {
   hero: {
     title: "Samvit Labs",
     subtitle: "End-to-End AI Solutions",
-    description: "Transform your vision into reality with our comprehensive AI services—from data collection to model deployment."
+    description: "Transform your vision into reality with our comprehensive AI services."
   },
   services: [
     {

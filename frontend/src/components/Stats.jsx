@@ -64,7 +64,7 @@ const Stats = () => {
   }, [isVisible, stats]);
 
   const formatNumber = (num, suffix) => {
-    if (suffix === 'B+') {
+    if (suffix === 'M+') {
       return num.toFixed(0);
     }
     if (suffix === '%') {
