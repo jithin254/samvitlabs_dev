@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Hero from '../components/Hero';
 import Services from '../components/Services';
-import Capabilities from '../components/Capabilities';
 import Stats from '../components/Stats';
-import CaseStudies from '../components/CaseStudies';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 
@@ -20,9 +18,7 @@ const Home = () => {
     <div className="bg-white">
       <Hero scrollY={scrollY} />
       <Services />
-      <Capabilities />
       <Stats />
-      <CaseStudies />
       <Contact />
       <Footer />
     </div>
