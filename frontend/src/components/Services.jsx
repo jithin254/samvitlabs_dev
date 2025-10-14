@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Database, Tag, Brain, Rocket, ChevronRight } from 'lucide-react';
+import { Database, Tag, Brain, Rocket, ChevronRight, Zap } from 'lucide-react';
 import { mockData } from '../mock';
 import {
   Accordion,
@@ -14,6 +14,13 @@ const iconMap = {
   brain: Brain,
   rocket: Rocket
 };
+
+const gradients = [
+  'from-cyan-500 to-blue-600',
+  'from-purple-500 to-pink-600',
+  'from-orange-500 to-red-600',
+  'from-green-500 to-teal-600'
+];
 
 const Services = () => {
   const { services } = mockData;
@@ -52,67 +59,83 @@ const Services = () => {
   }, []);
 
   return (
-    <section id="services" className="py-32 px-6 bg-white">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-20">
-          <span className="inline-block px-6 py-2 bg-gray-100 text-gray-700 text-sm uppercase tracking-wider rounded-full mb-6">
+    <section id="services" className="relative py-32 px-6 bg-gradient-to-b from-gray-900 via-slate-900 to-gray-900 overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.1),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(168,85,247,0.1),transparent_50%)]" />
+      
+      <div className="relative z-10 max-w-6xl mx-auto">
+        <div className="text-center mb-24">
+          <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 backdrop-blur-sm border border-cyan-500/20 text-cyan-400 text-sm font-semibold uppercase tracking-wider rounded-full mb-8 animate-fadeInUp">
+            <Zap className="w-4 h-4" />
             Our Services
-          </span>
+          </div>
           <h2 
-            className="text-6xl md:text-7xl font-bold tracking-tight mb-6"
-            style={{ fontWeight: 700, letterSpacing: '-0.03em' }}
+            className="text-6xl md:text-7xl font-black tracking-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-100 to-purple-200 animate-fadeInUp"
+            style={{ animationDelay: '0.1s' }}
           >
             Comprehensive AI Solutions
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
             Transform your data into actionable intelligence with our end-to-end AI services
           </p>
         </div>
 
-        <Accordion type="single" value={openItem} onValueChange={setOpenItem} className="space-y-6">
+        <Accordion type="single" value={openItem} onValueChange={setOpenItem} className="space-y-8">
           {services.map((service, index) => {
             const Icon = iconMap[service.icon];
+            const gradient = gradients[index % gradients.length];
+            
             return (
               <AccordionItem 
                 key={service.id} 
                 value={service.id}
                 ref={(el) => (serviceRefs.current[index] = el)}
                 data-service-id={service.id}
-                className="border-2 border-gray-200 rounded-2xl overflow-hidden hover:border-gray-400 transition-all duration-500 hover:shadow-2xl"
+                className="relative backdrop-blur-xl bg-white/5 border-2 border-white/10 rounded-3xl overflow-hidden hover:border-white/20 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/10 group"
               >
-                <AccordionTrigger className="px-10 py-8 hover:no-underline group data-[state=open]:bg-gray-50">
+                {/* Gradient background on hover */}
+                <div className={`absolute inset-0 bg-gradient-to-r ${gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
+                
+                <AccordionTrigger className="relative px-10 py-8 hover:no-underline data-[state=open]:bg-white/5">
                   <div className="flex items-center gap-6 text-left w-full">
-                    <div className="w-20 h-20 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl flex items-center justify-center group-hover:from-black group-hover:to-gray-800 group-hover:text-white transition-all duration-500 shadow-lg group-hover:shadow-2xl group-hover:scale-110">
-                      <Icon className="w-9 h-9" />
+                    <div className={`relative w-20 h-20 bg-gradient-to-br ${gradient} rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-2xl group-hover:scale-110 transition-all duration-500`}>
+                      <Icon className="w-10 h-10 text-white" />
+                      <div className="absolute inset-0 bg-white/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-3xl font-bold mb-2" style={{ fontWeight: 700 }}>{service.title}</h3>
-                      <p className="text-gray-500 text-base">{service.shortDesc}</p>
+                      <h3 className="text-3xl font-black text-white mb-2">{service.title}</h3>
+                      <p className="text-gray-400 text-base font-medium">{service.shortDesc}</p>
                     </div>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="px-10 pb-10">
-                  <div className="pl-26 space-y-8 mt-4">
-                    <p className="text-gray-700 text-lg leading-relaxed">
+                  <div className="pl-26 space-y-8 mt-6">
+                    <p className="text-gray-300 text-lg leading-relaxed">
                       {service.fullDesc}
                     </p>
                     
                     <div>
-                      <h4 className="text-xl font-semibold mb-4 text-gray-900">Key Features</h4>
-                      <ul className="space-y-3">
+                      <h4 className="text-xl font-bold mb-6 text-white flex items-center gap-2">
+                        <div className={`w-1 h-6 bg-gradient-to-b ${gradient} rounded-full`} />
+                        Key Features
+                      </h4>
+                      <ul className="space-y-4">
                         {service.features.map((feature, idx) => (
-                          <li key={idx} className="flex items-start gap-3">
-                            <ChevronRight className="w-5 h-5 text-gray-400 mt-1 flex-shrink-0" />
-                            <span className="text-gray-600 leading-relaxed">{feature}</span>
+                          <li key={idx} className="flex items-start gap-3 group/item">
+                            <ChevronRight className={`w-5 h-5 text-cyan-400 mt-1 flex-shrink-0 group-hover/item:translate-x-1 transition-transform`} />
+                            <span className="text-gray-400 leading-relaxed group-hover/item:text-gray-300 transition-colors">{feature}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
 
-                    <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-8 rounded-xl border-l-4 border-black">
-                      <p className="text-gray-800 text-lg">
-                        <span className="font-bold text-black">Impact:</span> {service.benefits}
-                      </p>
+                    <div className={`relative bg-gradient-to-r ${gradient} p-[2px] rounded-2xl overflow-hidden`}>
+                      <div className="bg-gray-900/90 backdrop-blur-xl p-8 rounded-2xl">
+                        <p className="text-gray-200 text-lg">
+                          <span className="font-black text-white">Impact:</span> {service.benefits}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </AccordionContent>
