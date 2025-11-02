@@ -71,7 +71,7 @@ const HomePage = () => {
           <div className="contact-bar">
             <div className="contact-glow"></div>
             <p className="contact-text">
-              Contact us at <a href="mailto:xyz@gmail.com" className="contact-link">xyz@gmail.com</a>
+              Contact us at <a href="mailto:admin@samvitlabs.com" className="contact-link">admin@samvitlabs.com</a>
             </p>
           </div>
         </div>
