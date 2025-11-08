@@ -48,7 +48,7 @@ const HomePage = () => {
             </div>
           </div>
           
-          <p className="tagline">Transform Your Business with AI Innovation</p>
+          <p className="tagline">Engineering Intelligence for the Real World</p>
           
           <div className="coming-soon-container">
             <button className="coming-soon-btn">
